@@ -1,17 +1,17 @@
 
 public class BSTNode {
 	
-	int value;
+	int root;
 	BSTNode left, right;
 	
 	public BSTNode(int parentVal) {
-		value = parentVal;
+		root = parentVal;
 	}
 	public void insert(int childVal) {
-		if(childVal == value) {
+		if(childVal == root) {
 			throw new RuntimeException("Value alread exists");
 		}
-		if(childVal < value) {
+		if(childVal < root) {
 			if(left == null) {
 				left = new BSTNode(childVal);
 			}
@@ -29,6 +29,20 @@ public class BSTNode {
 		}
 	}
 	
+	public BSTNode search(int key) {
+		if(key == root) {
+			return this;
+		}
+		else if(key < root) {
+			left.search(key);
+			return left.search(key);
+		}
+		else {
+			right.search(key);
+			return right.search(key);
+		}
+	}
+	
 	public BSTNode getLeft() {
 		return left;
 	}
@@ -38,7 +52,7 @@ public class BSTNode {
 	}
 	
 	public int value() {
-		return value;
+		return root;
 	}
 
 }
