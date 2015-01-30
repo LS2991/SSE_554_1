@@ -1,11 +1,14 @@
+import java.util.ArrayList;
+
 
 public class BSTNode {
 	
-	int root;
+	int root, size = 0;
 	BSTNode left, right;
 	
 	public BSTNode(int parentVal) {
 		root = parentVal;
+		size++;
 	}
 	public void insert(int childVal) {
 		if(childVal == root) {
@@ -27,6 +30,8 @@ public class BSTNode {
 				right.insert(childVal);
 			}
 		}
+		
+		size++;
 	}
 	
 	public BSTNode search(int key) {
@@ -42,6 +47,21 @@ public class BSTNode {
 			return right.search(key);
 		}
 	}
+	public ArrayList<Integer> getInOrderArrayList(BSTNode tree) {
+		ArrayList<Integer> inOrder = new ArrayList<Integer>();
+		inOrderTraversal(tree, inOrder);
+		return inOrder;
+	}
+	
+	private void inOrderTraversal(BSTNode node, ArrayList<Integer> inOrder) {
+				
+		if(node == null)
+			return;
+		
+		inOrderTraversal(node.getLeft(), inOrder);
+		inOrder.add(node.value());
+		inOrderTraversal(node.getRight(), inOrder);
+	}
 	
 	public BSTNode getLeft() {
 		return left;
@@ -51,8 +71,13 @@ public class BSTNode {
 		return right;
 	}
 	
+	public int getSize() {
+		return size;
+	}
+	
 	public int value() {
 		return root;
 	}
+	
 
 }
