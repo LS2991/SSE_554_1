@@ -65,6 +65,8 @@ public class TreeTest {
 		}
 		
 		assertEquals(5, tree.search(5, tree.root).value);
+		assertEquals(20, tree.search(20, tree.root).value);
+		assertEquals(1, tree.search(1, tree.root).value);
 	}
 	
 	@Test (expected = RuntimeException.class)
@@ -75,8 +77,10 @@ public class TreeTest {
 		for(int x : vals) {
 			tree.insert(x, tree.root);
 		}
-		//System.out.println(tree.search(100) + " sdf sdfsdfsd");
+		
 		tree.search(0, tree.root);
+		tree.search(200, tree.root);
+		tree.search(-1, tree.root);
 	}
 	
 	@Test
