@@ -12,7 +12,7 @@ public class BSTNode {
 	}
 	public void insert(int childVal) {
 		if(childVal == root) {
-			throw new RuntimeException("Value alread exists");
+			throw new RuntimeException("Value already exists");
 		}
 		if(childVal < root) {
 			if(left == null) {
@@ -86,6 +86,7 @@ public class BSTNode {
 		//BSTNode toDelete = parent.search(value);
 		//BSTNode toReplace;
 		
+		//Algorithm for deleting a node with no children
 		if(value != parent.value()) {
 			if(value < parent.value()) {
 				if(value < parent.getLeft().value()) { //checks left child for equivalence and compares
@@ -98,7 +99,7 @@ public class BSTNode {
 					parent.left = null;
 				}
 			}
-			else {
+			else if(value > parent.value()) {
 				if(value < parent.getRight().value()) {
 					delete(value, parent.getRight().getLeft());
 				}
@@ -111,7 +112,7 @@ public class BSTNode {
 			}
 		}
 		else if(value == parent.value()) {
-			
+			parent = null;
 		}
 		
 	}

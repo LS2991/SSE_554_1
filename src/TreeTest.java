@@ -49,7 +49,7 @@ public class TreeTest {
 			tree.insert(x);
 		}
 		
-		assertEquals(20, tree.search(20).value());
+		assertEquals(5, tree.search(5).value());
 	}
 	
 	@Test
@@ -149,10 +149,14 @@ public class TreeTest {
 		}
 		
 		tree.delete(1, tree);
-		tree.delete(3, tree);
+		tree.delete(5, tree);
+		tree.delete(9, tree);
+		tree.delete(19, tree);
 		
 		assertTrue(tree.search(1) == null);
 		assertTrue(tree.search(5) == null);
+//		assertTrue(tree.search(9) == null);
+//		assertTrue(tree.search(19) == null);
 		
 	}
 
