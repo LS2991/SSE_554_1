@@ -16,8 +16,6 @@ public class TreeTest {
 		assertTrue(tree.root.value == 4);
 		assertTrue(tree.root.left.value == 2);
 		assertTrue(tree.root.right.value == 5);
-		
-		//System.out.println(tree.getSize());
 	}
 	
 	@Test (expected = RuntimeException.class)
