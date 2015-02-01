@@ -194,15 +194,23 @@ public class TreeTest {
 		tree.delete(2, tree.root);
 		tree.delete(15, tree.root);
 		
+		//Search for deleted node
 		tree.search(2, tree.root);
 		tree.search(15, tree.root);
 		
+		//Ensure that the replacement node is in the correct place
+		assertTrue(tree.search(6, tree.root).left.value == 3);
+		assertTrue(tree.search(6, tree.root).right == null);
+		
+		//Ensure the replacement node has the correct children
 		assertTrue(tree.search(3, tree.root).left.value == 1);
 		assertTrue(tree.search(3, tree.root).right.value == 5);
 		
+		//Ensure that the replacement node is in the correct place
 		assertTrue(tree.search(10, tree.root).left.value == 9);
 		assertTrue(tree.search(10, tree.root).right.value == 19);
 		
+		////Ensure the replacement node has the correct children
 		assertTrue(tree.search(19, tree.root).left == null);
 		assertTrue(tree.search(19, tree.root).right.value == 20);
 	}
