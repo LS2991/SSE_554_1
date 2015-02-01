@@ -110,7 +110,7 @@ public class BST {
 	}
 	
 	public void delete(int value, BSTNode root) {
-		//BSTNode toDelete = parent.search(value);
+		
 		BSTNode minOfRightSub;
 		BSTNode deletedNode;
 		
@@ -120,6 +120,7 @@ public class BST {
 				this.root = null;
 				return;
 			}
+			//Algorithm to delete all other nodes
 			else {
 				deletedNode = root;
 				minOfRightSub = findMin(deletedNode);
