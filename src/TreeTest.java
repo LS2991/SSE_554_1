@@ -69,7 +69,7 @@ public class TreeTest {
 		assertEquals(1, tree.search(1, tree.root).value);
 	}
 	
-	@Test (expected = NullPointerException.class)
+	@Test (expected = RuntimeException.class)
 	public void searchFailedTest() {
 		BST tree = new BST(8);
 		int[] vals = {10, 15, 6, 9, 2, 1, 20, 19, 3, 5};
