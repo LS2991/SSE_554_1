@@ -6,6 +6,7 @@ public class BST {
 	
 	protected int size = 0;
 	protected BSTNode root;
+	boolean found = false;
 	
 	public BST(int parentVal) {
 		root = new BSTNode(parentVal);
@@ -64,14 +65,15 @@ public class BST {
 		if(key == root.value) {
 			return root;
 		}
-		else if(key < root.value && root.left != null) {
+		else if(key < root.value && root != null) {
 			return search(key, root.left);
 		}
-		else if(key > root.value && root.right != null){
+		else if(key > root.value && root != null){
 			return search(key, root.right);
 		}
 		else {
 			throw new RuntimeException("Node is not contained in tree");
+			//throw new NullPointerException("Node is not contained in tree");
 			//return null;
 		}
 	}
@@ -117,29 +119,43 @@ public class BST {
 		//Algorithm for deleting a node with no children
 		if(value == root.value) {
 			if(getNumChildren(root) == 0) {
-				this.root = null;
+				root = null;
+				found = true;
 				return;
 			}
 			//Algorithm to delete all other nodes
 			else {
+				System.out.println("3root = " + root.value);
 				deletedNode = root;
-				minOfRightSub = findMin(deletedNode);
-				this.root = null;
-				
-				insert(minOfRightSub.value, this.root);
-				insert(deletedNode.left, this.root);
-				insert(deletedNode.right, this.root);
-				
-				delete(minOfRightSub.value, root);
-				
+				minOfRightSub = findMin(deletedNode.right);
+				System.out.println(minOfRightSub.value);
+				//root.left = null;
+				//root.right = null;
+				root = minOfRightSub;
+				System.out.println("f" + root.value);
+				System.out.println("d" + deletedNode.left.value);
+//				insert(minOfRightSub.value, this.root);
+				//insert(deletedNode.left, root);
+				if(deletedNode.right.value != minOfRightSub.value) {
+					System.out.println("in if");
+					//insert(deletedNode.right, root);
+					delete(minOfRightSub.value, root);
+				}
+				found = true;
+				return;
 			}
 			
 		}
-		else if(value < root.value) {
+		else if(value < root.value && !found) {
+			System.out.println("1root = " + root.value);
 			delete(value, root.left);
 		}
-		else if(value > root.value) {
+		else if(value > root.value && !found) {
+			System.out.println("2root = " + root.value);
 			delete(value, root.right);
+		}
+		else {
+			return;
 		}
 	}
 	
